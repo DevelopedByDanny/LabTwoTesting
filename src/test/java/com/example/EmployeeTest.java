@@ -61,4 +61,13 @@ class EmployeeTest {
 
         assertThat(employee.isPaid()).isTrue();
     }
+
+    @Test
+    @DisplayName("When calling toString it prints the correct string")
+    void whenCallingToStringItPrintsTheCorrectString() {
+
+        assertThat(employee.toString()).hasToString("Employee [id=Donald Trump, salary=1000000.0]");
+
+    }
+
 }
