@@ -32,9 +32,16 @@ class EmployeeTest {
     @Test
     @DisplayName("Name changing when setting a new name")
     void nameChangingWhenSettingANewName() {
-
         employee.setId("Not Trump");
 
         assertThat(employee.getId()).isEqualTo("Not Trump");
+    }
+
+    @Test
+    @DisplayName("Salary changing when setting new salary")
+    void salaryChangingWhenSettingNewSalary() {
+        employee.setSalary(2000000);
+
+        assertThat(employee.getSalary()).isEqualTo(2000000);
     }
 }
