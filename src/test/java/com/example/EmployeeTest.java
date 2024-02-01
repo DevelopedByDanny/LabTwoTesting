@@ -1,16 +1,23 @@
 package com.example;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class EmployeeTest {
+
+    private Employee employee;
+
+    @BeforeEach
+    void setUp() {
+        employee = new Employee("Donald Trump", 1000000);
+    }
+
     @Test
     @DisplayName("When creating an employee it gets the correct name")
     void whenCreatingAnEmployeeItGetsTheCorrectName() {
-        Employee employee = new Employee("Donald Trump", 1000000);
 
         assertThat(employee.getId()).isEqualTo("Donald Trump");
     }
@@ -18,8 +25,16 @@ class EmployeeTest {
     @Test
     @DisplayName("When creating an employee it gets the correct salary")
     void whenCreatingAnEmployeeItGetsTheCorrectSalary() {
-        Employee employee = new Employee("Homeless Guy", 10);
 
-        assertThat(employee.getSalary()).isEqualTo(10);
+        assertThat(employee.getSalary()).isEqualTo(1000000);
+    }
+
+    @Test
+    @DisplayName("Name changing when setting a new name")
+    void nameChangingWhenSettingANewName() {
+
+        employee.setId("Not Trump");
+
+        assertThat(employee.getId()).isEqualTo("Not Trump");
     }
 }
