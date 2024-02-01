@@ -44,4 +44,21 @@ class EmployeeTest {
 
         assertThat(employee.getSalary()).isEqualTo(2000000);
     }
+
+    @Test
+    @DisplayName("When creating employee paid is false")
+    void whenCreatingEmployeePaidIsFalse() {
+
+        assertThat(employee.isPaid()).isFalse();
+
+    }
+
+    @Test
+    @DisplayName("When employee is paid paid is true")
+    void whenEmployeeIsPaidPaidIsTrue() {
+
+        employee.setPaid(true);
+
+        assertThat(employee.isPaid()).isTrue();
+    }
 }
