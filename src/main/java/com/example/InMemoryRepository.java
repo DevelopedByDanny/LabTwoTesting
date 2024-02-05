@@ -1,5 +1,6 @@
 package com.example;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class InMemoryRepository implements EmployeeRepository {
@@ -7,6 +8,10 @@ public class InMemoryRepository implements EmployeeRepository {
 
     public InMemoryRepository(List<Employee> employees) {
         this.employees = employees;
+    }
+
+    public InMemoryRepository() {
+        employees = new ArrayList<>();
     }
 
     @Override
@@ -19,5 +24,9 @@ public class InMemoryRepository implements EmployeeRepository {
         employees.removeIf(employee -> employee.getId().equals(newEmployee.getId()));
         employees.add(newEmployee);
         return newEmployee;
+    }
+
+    public List<Employee> getEmployees() {
+        return employees;
     }
 }
