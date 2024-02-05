@@ -28,6 +28,16 @@ class EmployeesTest {
     @Test
     @DisplayName("When Employees is payed with a list of three the count should be three")
     void whenEmployeesIsPayedWithAListOfThreeTheCountShouldBeThree() {
-        assertThat(employees.payEmployees()).isEqualTo(3);
+        var payedEmployees = employees.payEmployees();
+
+        assertThat(payedEmployees).isEqualTo(3);
     }
+    
+   @Test
+   @DisplayName("When Employees is payed the bankservice pay method is called the corrrect number of times")
+   void whenEmployeesIsPayedTheBankservicePayMethodIsCalledTheCorrrectNumberOfTimes() {
+       employees.payEmployees();
+
+       assertThat(bankService.numOfPayments).isEqualTo(3);
+   }
 }
