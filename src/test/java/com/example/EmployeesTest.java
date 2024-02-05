@@ -6,9 +6,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class EmployeesTest {
 
@@ -32,12 +31,22 @@ class EmployeesTest {
 
         assertThat(payedEmployees).isEqualTo(3);
     }
-    
-   @Test
-   @DisplayName("When Employees is payed the bankservice pay method is called the corrrect number of times")
-   void whenEmployeesIsPayedTheBankservicePayMethodIsCalledTheCorrrectNumberOfTimes() {
-       employees.payEmployees();
 
-       assertThat(bankService.numOfPayments).isEqualTo(3);
-   }
+    @Test
+    @DisplayName("When Employees is payed the bankService pay method is called the correct number of times")
+    void whenEmployeesIsPayedTheBankServicePayMethodIsCalledTheCorrectNumberOfTimes() {
+        employees.payEmployees();
+
+        assertThat(bankService.numOfPayments).isEqualTo(3);
+    }
+
+    @Test
+    @DisplayName("When payments fail no one should be payed")
+    void whenPaymentsFailNoOneShouldBePayed() {
+
+        bankService.payFailure = true; // Setup failure i bankService
+        var payedEmployees = employees.payEmployees();
+
+        assertThat(payedEmployees).isZero();
+    }
 }
