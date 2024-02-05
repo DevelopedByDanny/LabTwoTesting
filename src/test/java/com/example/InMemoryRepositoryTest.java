@@ -43,5 +43,28 @@ class InMemoryRepositoryTest {
       assertThat(newRepo.getEmployees()).isEmpty();
   }
 
+  @Test
+  @DisplayName("When initializing a repository with a list of employees findAll returns the same amount as the list")
+  void whenInitializingARepositoryWithAListOfEmployeesFindAllReturnsTheSameAmountAsTheList() {
+      assertThat(inMemoryRepository.getEmployees()).hasSize(3);
+  }
 
+  @Test
+  @DisplayName("When saving an employee the amount of employees increases")
+  void whenSavingAnEmployeeTheAmountOfEmployeesIncreases() {
+      inMemoryRepository.save(new Employee("Don Corleone", 1000000));
+
+      assertThat(inMemoryRepository.findAll()).hasSize(4);
+  }
+
+  @Test
+  @DisplayName("When saving an employee with the same id it replaces the existing employee")
+  void whenSavingAnEmployeeWithTheSameIdItReplacesTheExistingEmployee() {
+
+      inMemoryRepository.save(new Employee("4", 4000));
+      inMemoryRepository.save(new Employee("4", 1000000)); //adding a duplicate id
+
+      var newEmployee = employees.stream().filter(employee -> employee.getId().equals("4"));
+      assertThat(newEmployee.findFirst().get().getSalary()).isNotEqualTo(4000);
+  }
 }
