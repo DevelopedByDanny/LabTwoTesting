@@ -1,11 +1,14 @@
 package com.example.assignmentTwo;
 
 public class BowlingGame {
-    public void roll(int i) {
 
+    private int score;
+
+    public void roll(int i) {
+        score += i;
     }
 
     public int score() {
-        return 0;
+        return score;
     }
 }
