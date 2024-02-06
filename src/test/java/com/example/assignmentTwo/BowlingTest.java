@@ -49,4 +49,10 @@ class BowlingTest {
         assertThrows(IllegalArgumentException.class, ()-> game.roll(11));
 
  }
+ @Test
+ @DisplayName("A roll can not be negative")
+ void aRollCanNotBeNegative() {
+
+        assertThrows(IllegalArgumentException.class, ()->game.roll(-1));
+ }
 }

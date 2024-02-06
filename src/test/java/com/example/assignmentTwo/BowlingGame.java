@@ -7,7 +7,8 @@ public class BowlingGame {
     private int score;
 
     public void roll(int i) {
-        if (i > 10) throw new IllegalArgumentException();
+        if (i > 10 || i < 0) throw new IllegalArgumentException();
+
         score += i;
     }
 
