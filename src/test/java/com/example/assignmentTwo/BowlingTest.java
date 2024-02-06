@@ -64,10 +64,14 @@ class BowlingTest {
    @Test
    @DisplayName("A game of Bowling is never more than 21 rolls")
    void aGameOfBowlingIsNeverMoreThan21Rolls() {
-       for (int i = 0; i < 22; i++) {
-           game.roll(10);
+       for (int i = 0; i < 19; i++) {
+           game.roll(1);
        }
-       assertThrows(RuntimeException.class, ()-> game.roll(10));
+       game.roll(10);
+       game.roll(10);
+       game.roll(10);
+
+       assertThrows(RuntimeException.class, ()-> game.roll(1));
    }
 
    @Test
@@ -82,4 +86,14 @@ class BowlingTest {
 
    }
 
+   @Test
+   @DisplayName("If you strike the bonus gets added")
+   void ifYouStrikeTheBonusGetsAdded() {
+       game.roll(10);
+       game.roll(1);
+       game.roll(1);
+       game.roll(1);
+
+       assertThat(game.score()).isEqualTo(14);
+   }
 }
