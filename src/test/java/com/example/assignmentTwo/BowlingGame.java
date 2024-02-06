@@ -1,10 +1,7 @@
 package com.example.assignmentTwo;
 
-import net.bytebuddy.implementation.bytecode.Throw;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
 public class BowlingGame {
 
@@ -17,9 +14,14 @@ public class BowlingGame {
     }
 
     public int score() {
-        var sum= 0;
-        for (Integer integer : score) {
-            sum += integer;
+        var sum = 0;
+        var isBonus = false;
+        for (int i = 0; i < score.size(); i++) {
+            if (i >= 2 && i % 2 == 0 && score.get(i - 1) + score.get(i - 2) == 10) {
+                sum += score.get(i);
+            }
+
+            sum += score.get(i);
         }
         return sum;
     }

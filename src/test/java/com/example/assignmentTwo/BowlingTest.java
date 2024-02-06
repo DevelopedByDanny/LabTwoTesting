@@ -70,4 +70,16 @@ class BowlingTest {
        assertThrows(RuntimeException.class, ()-> game.roll(10));
    }
 
+   @Test
+   @DisplayName("If you make a spare the bonus gets added")
+   void ifYouMakeASpareTheBonusGetsAdded() {
+       game.roll(2);
+       game.roll(8);
+       game.roll(1);
+       game.roll(1);
+
+       assertThat(game.score()).isEqualTo(13);
+
+   }
+
 }
