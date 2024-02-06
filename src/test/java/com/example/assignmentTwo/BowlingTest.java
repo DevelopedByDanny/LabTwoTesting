@@ -31,4 +31,13 @@ class BowlingTest {
 
         assertThat(game.score()).isEqualTo(1);
     }
+
+    @Test
+    @DisplayName("Roll two balls should give correct score")
+    void rollTwoBallsShouldGiveCorrectScore() {
+        game.roll(1);
+        game.roll(1);
+
+        assertThat(game.score()).isEqualTo(2);
+    }
 }
