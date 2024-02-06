@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.junit.jupiter.api.Assertions.*;
 
 class BowlingTest {
@@ -40,4 +41,12 @@ class BowlingTest {
 
         assertThat(game.score()).isEqualTo(2);
     }
+
+ @Test
+ @DisplayName("A roll can never be more than ten")
+ void aRollCanNeverBeMoreThanTen() {
+
+        assertThrows(IllegalArgumentException.class, ()-> game.roll(11));
+
+ }
 }
