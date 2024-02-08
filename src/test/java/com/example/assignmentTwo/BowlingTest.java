@@ -12,9 +12,10 @@ class BowlingTest {
     private BowlingGame game;
 
     @BeforeEach
-    void setup(){
+    void setup() {
         game = new BowlingGame();
     }
+
     @Test
     @DisplayName("Can we create a game")
     void canWeCreateAGame() {
@@ -61,43 +62,43 @@ class BowlingTest {
         assertThrows(IllegalArgumentException.class, () -> game.roll(-1));
     }
 
-   @Test
-   @DisplayName("A game of Bowling is never more than 21 rolls")
-   void aGameOfBowlingIsNeverMoreThan21Rolls() {
-       for (int i = 0; i < 9; i++) {
-           game.roll(1);
-           game.roll(1);
-       }
-       game.roll(10);
-       game.roll(10);
-       game.roll(10);
+    @Test
+    @DisplayName("A game of Bowling is never more than 21 rolls")
+    void aGameOfBowlingIsNeverMoreThan21Rolls() {
+        for (int i = 0; i < 9; i++) {
+            game.roll(1);
+            game.roll(1);
+        }
+        game.roll(10);
+        game.roll(10);
+        game.roll(10);
 
-       assertThrows(RuntimeException.class, ()-> game.roll(1));
-   }
+        assertThrows(RuntimeException.class, () -> game.roll(1));
+    }
 
-   @Test
-   @DisplayName("If you make a spare the bonus gets added")
-   void ifYouMakeASpareTheBonusGetsAdded() {
-       game.roll(2);
-       game.roll(8);
-       game.roll(1);
-       game.roll(1);
+    @Test
+    @DisplayName("If you make a spare the bonus gets added")
+    void ifYouMakeASpareTheBonusGetsAdded() {
+        game.roll(2);
+        game.roll(8);
+        game.roll(1);
+        game.roll(1);
 
-       assertThat(game.score()).isEqualTo(13);
+        assertThat(game.score()).isEqualTo(13);
 
-   }
+    }
 
-   @Test
-   @DisplayName("If you strike the bonus gets added")
-   void ifYouStrikeTheBonusGetsAdded() {
-       game.roll(10);
-       game.roll(1);
-       game.roll(1);
-       game.roll(1);
-       game.roll(5);
+    @Test
+    @DisplayName("If you strike the bonus gets added")
+    void ifYouStrikeTheBonusGetsAdded() {
+        game.roll(10);
+        game.roll(1);
+        game.roll(1);
+        game.roll(1);
+        game.roll(5);
 
-       assertThat(game.score()).isEqualTo(20);
-   }
+        assertThat(game.score()).isEqualTo(20);
+    }
 
     @Test
     @DisplayName("if you strike and then spare it should calculate correct bonus")
@@ -109,6 +110,13 @@ class BowlingTest {
         game.roll(1);
 
         assertThat(game.score()).isEqualTo(33);
+    }
 
+    @Test
+    @DisplayName("error should be thrown if first plus second roll is more than ten")
+    void errorShouldBeThrownIfFirstPlusSecondRollIsMoreThanTen() {
+        game.roll(5);
+
+        assertThrows(RuntimeException.class, () -> game.roll(6));
     }
 }

@@ -31,6 +31,7 @@ public class BowlingGame {
             }
         } else {
             var saveFirstRoll = score.get(score.size() - 1).firstRoll;
+            if (saveFirstRoll + i > 10) throw new RuntimeException();
             score.remove(score.size() - 1);
             score.add(Frame.of(saveFirstRoll, i));
             isFrameOver = true;
