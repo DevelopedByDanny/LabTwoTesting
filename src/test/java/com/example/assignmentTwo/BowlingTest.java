@@ -64,7 +64,8 @@ class BowlingTest {
    @Test
    @DisplayName("A game of Bowling is never more than 21 rolls")
    void aGameOfBowlingIsNeverMoreThan21Rolls() {
-       for (int i = 0; i < 19; i++) {
+       for (int i = 0; i < 9; i++) {
+           game.roll(1);
            game.roll(1);
        }
        game.roll(10);
@@ -93,7 +94,21 @@ class BowlingTest {
        game.roll(1);
        game.roll(1);
        game.roll(1);
+       game.roll(5);
 
-       assertThat(game.score()).isEqualTo(14);
+       assertThat(game.score()).isEqualTo(20);
    }
+
+    @Test
+    @DisplayName("if you strike and then spare it should calculate correct bonus")
+    void ifYouStrikeAndThenSpareItShouldCalculateCorrectBonus() {
+        game.roll(10);
+        game.roll(2);
+        game.roll(8);
+        game.roll(1);
+        game.roll(1);
+
+        assertThat(game.score()).isEqualTo(33);
+
+    }
 }
