@@ -1,4 +1,4 @@
-package com.example.assignmentTwo;
+package com.example.secondAssignment;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

@@ -1,4 +1,4 @@
-package com.example.assignmentTwo;
+package com.example.secondAssignment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +45,7 @@ public class BowlingGame {
                 else sum += score.get(i + 1).firstRoll + score.get(i + 1).secondRoll;
             } else if (score.get(i).firstRoll == 10 && score.size() > i + 1 && i != 10) {
                 sum += score.get(i + 1).firstRoll + score.get(i + 1).secondRoll;
-            } else if (!(score.get(i).firstRoll == 10) && score.get(i).firstRoll + score.get(i).secondRoll == 10 && score.size() > i + 1) {
+            } else if (score.get(i).firstRoll != 10 && score.get(i).firstRoll + score.get(i).secondRoll == 10 && score.size() > i + 1) {
                 sum += score.get(i + 1).firstRoll;
             }
         }
